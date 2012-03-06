@@ -1,7 +1,7 @@
 
 {
-  "name"           : "show-once",
-  "version"        : "0.0.1",
+  "name"           : "jquery-show-once-plugin",
+  "version"        : "0.1.0",
   "description"    : "Show once...",
   "homepage"       : "https://github.com/jaakkos/jquery-show-once",
   "repository"     : {"type": "git",
