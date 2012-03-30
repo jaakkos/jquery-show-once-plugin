@@ -79,8 +79,7 @@
 
         return document.cookie = [
             encodeURIComponent(@cookieKey()), '=', encodeURIComponent(value),
-            '; expires=' + cookieExpiresAt.toUTCString(),
-            '; path=' + document.location.pathname
+            '; expires=' + cookieExpiresAt.toUTCString()
           ].join('')
 
       pairs =  document.cookie.split('; ')
