@@ -64,7 +64,9 @@
 
     contenLoaded: () =>
       if @options.callback
-        callback_function = @options.callback($(@element))
+        unless @cookie()
+          callback_function = @options.callback($(@element))
+
       $(@element).trigger('plugin_showOnce.contentLoaded')
       @
 
