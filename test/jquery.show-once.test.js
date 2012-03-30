@@ -9,6 +9,10 @@ var log = function() {
   buster.log(arguments);
 };
 
+var callback = function (element) {
+  $(element).fadeIn(750);
+};
+
 var clearCookies = function() {
   var cookies = document.cookie.split(";");
   for (var i = 0; i < cookies.length; i++) {
@@ -36,9 +40,7 @@ describe("Show Once", function() {
     });
 
     it("call callback with container element", function(done) {
-      var callback = function (element) {
-        $(element).fadeIn(750);
-      };
+
       jQuery("#show-once-7").bind('plugin_showOnce.contentLoaded', function(event) {
         var content = jQuery("#show-once-7").html();
         expect(content).toBeSameAs(defaultContent);
@@ -61,7 +63,7 @@ describe("Show Once", function() {
         expect(content).toBeSameAs("<p>place holder</p>");
         done();
       });
-      jQuery("#show-once-1").showOnce({contentUrl: "/content.html", logger: buster.log, log: true});
+      jQuery("#show-once-1").showOnce({contentUrl: "/content.html", callback: callback, logger: buster.log, log: true});
     });
 
     after(function() {
@@ -80,7 +82,7 @@ describe("Show Once", function() {
         expect(jQuery("#show-once-2").html()).toBeSameAs(defaultContent);
         done();
       });
-      jQuery("#show-once-2").showOnce({contentUrl: "/content.html", logger: buster.log, log: true});
+      jQuery("#show-once-2").showOnce({contentUrl: "/content.html", callback: callback, logger: buster.log, log: true});
     });
 
     it("add bind to all links inside given element", function(done) {
@@ -90,7 +92,7 @@ describe("Show Once", function() {
         expect((jQuery(links[1]).data("events"))['click'][0]['namespace']).toBeSameAs('showOnce');
         done();
       });
-      jQuery("#show-once-4").showOnce({contentUrl: "/content.html", logger: buster.log, log: true});
+      jQuery("#show-once-4").showOnce({contentUrl: "/content.html", callback: callback, logger: buster.log, log: true});
     });
 
     it("dont add cookie if links are not clicked", function(done) {
