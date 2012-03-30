@@ -20,9 +20,10 @@
   # Create the defaults once
   pluginName = 'showOnce'
   defaults =
-    expires: 30
+    expires: 65
     cookieKeyPrefix: '_show_once_traking_cookie'
     contentUrl: null,
+    callback: null,
     log: false,
     logger: null
 
@@ -62,7 +63,10 @@
         true
 
     contenLoaded: () =>
+      if @options.callback
+        callback_function = @options.callback($(@element))
       $(@element).trigger('plugin_showOnce.contentLoaded')
+      @
 
     cookie: ( value ) ->
       if (arguments.length == 1 && (!/Object/.test(Object.prototype.toString.call(value))))

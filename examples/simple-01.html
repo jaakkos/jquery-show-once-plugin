@@ -30,7 +30,8 @@
   <script type="text/javascript">
     $(function() {
         $('#show-once').showOnce({
-            contentUrl: "sample-content.html"
+            contentUrl: "sample-content.html",
+            callback: function(element) { $(element).fadeIn(850); }
         });
     });
   </script>
